@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import AppKit
 
 @main
 struct EventViewerApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Settings {
+            Text("App Settings")
         }
     }
 }
