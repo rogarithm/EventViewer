@@ -15,6 +15,7 @@
 		586752802CFD96F3001BBED8 /* EventViewerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5867527F2CFD96F3001BBED8 /* EventViewerUITests.swift */; };
 		586752822CFD96F3001BBED8 /* EventViewerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586752812CFD96F3001BBED8 /* EventViewerUITestsLaunchTests.swift */; };
 		586752912CFDA76D001BBED8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586752902CFDA76D001BBED8 /* AppDelegate.swift */; };
+		58EE4B222CFFF5D100516F92 /* EventGetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EE4B212CFFF5D100516F92 /* EventGetResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5867527F2CFD96F3001BBED8 /* EventViewerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewerUITests.swift; sourceTree = "<group>"; };
 		586752812CFD96F3001BBED8 /* EventViewerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		586752902CFDA76D001BBED8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		58EE4B212CFFF5D100516F92 /* EventGetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventGetResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				5867526C2CFD96F2001BBED8 /* EventViewer.entitlements */,
 				586752692CFD96F2001BBED8 /* Preview Content */,
 				586752902CFDA76D001BBED8 /* AppDelegate.swift */,
+				58EE4B212CFFF5D100516F92 /* EventGetResponse.swift */,
 			);
 			path = EventViewer;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				586752912CFDA76D001BBED8 /* AppDelegate.swift in Sources */,
 				586752662CFD96F1001BBED8 /* ContentView.swift in Sources */,
+				58EE4B222CFFF5D100516F92 /* EventGetResponse.swift in Sources */,
 				586752642CFD96F1001BBED8 /* EventViewerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

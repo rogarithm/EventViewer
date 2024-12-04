@@ -17,22 +17,66 @@ class AppDelegate: NSObject, NSApplicationDelegate {
              button.title = "Evt"
              button.action = #selector(showMenu)
          }
-
-         let menu = NSMenu()
-         menu.addItem(NSMenuItem(title: "Option 1", action: #selector(option1Action), keyEquivalent: "1"))
-         menu.addItem(NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "q"))
-         statusItem?.menu = menu
      }
 
      @objc func showMenu() {
-         statusItem?.menu?.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
+         statusItem?.menu = NSMenu()
+         
+         let selectedDate = "2024-11-25"
+         fetchEvents(for: selectedDate) { [weak self] events in
+             DispatchQueue.main.async {
+                 guard let self = self else { return }
+                 if let events = events, !events.isEmpty {
+                     for event in events {
+                         let title = "\(event.startDateTime) - \(event.endDateTime): \(event.description)"
+                         let menuItem = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+                         self.statusItem?.menu?.addItem(menuItem)
+                     }
+                 } else {
+                     self.statusItem?.menu?.addItem(NSMenuItem(title: "No Events", action: nil, keyEquivalent: ""))
+                 }
+                 self.statusItem?.menu?.addItem(NSMenuItem.separator())
+                 self.statusItem?.menu?.addItem(NSMenuItem(title: "Quit", action: #selector(self.quit), keyEquivalent: "q"))
+                 self.statusItem?.menu?.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
+             }
+             
+         }
      }
 
-     @objc func option1Action() {
-         print("Option 1 selected!")
-     }
-
-     @objc func quit() {
-         NSApp.terminate(nil)
-     }
+    func fetchEvents(for date: String, completion: @escaping ([EventGetResponse]?) -> Void) {
+        guard let url = URL(string: "http://localhost:8080/events?date=\(date)") else {
+            print("Invalid URL")
+            completion(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error fetching events: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                completion(nil)
+                return
+            }
+            
+            do {
+                print(data)
+                let events = try JSONDecoder().decode([EventGetResponse].self, from: data)
+                completion(events)
+            } catch {
+                print("Failed to decode JSON: \(error)")
+                completion(nil)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    @objc func quit() {
+        NSApp.terminate(nil)
+    }
 }
